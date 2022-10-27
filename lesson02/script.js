@@ -5,7 +5,7 @@
         category = 'mobile phone',
         price = 750;
 
-    let sum = quantity * price;
+    const sum = quantity * price;
     console.log(`Общая сумма товара ${sum}`);
 }
 

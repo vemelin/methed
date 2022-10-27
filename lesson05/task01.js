@@ -5,7 +5,7 @@ const newValue = + prompt('Введите сумму', '');
 const currencyConverter = (input) => {
     let amount = input;
     if (!Number.isNaN(amount) && amount > 0) {
-        const usd = 73;
+        const usd = 64;
         let eur = amount * usd * 1.2;
         return console.log(`Вы получите: ${eur}€`);
     }

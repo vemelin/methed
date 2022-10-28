@@ -12,7 +12,7 @@
                 break;
             }
         }
-        if (checkValue == true) {
+        if (checkValue === true) {
             console.log(`Число ${num} простое`);
         } else {
             console.log(`Число ${num} составное`);

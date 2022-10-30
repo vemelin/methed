@@ -1,6 +1,6 @@
 'use strict'
 {
-  const allСashbox = [
+  const allCashbox = [
     [12, 4500], 
     [7, 3210], 
     [4, 650], 
@@ -21,5 +21,5 @@
     }
     console.log(averageSum/newArr.length);
 	};
-	getAveragePriceGoods(allСashbox);
+  getAveragePriceGoods(allCashbox);
 }

@@ -8,5 +8,5 @@
 		}
 		return console.log(newArr);;
 	};
-	addPrefix(names, 'Mr')
+	addPrefix(names, 'Mr');
 }

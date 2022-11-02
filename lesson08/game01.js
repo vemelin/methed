@@ -7,7 +7,7 @@
     console.log('Random Num: ' + randomNum);
     let userNum;
     do {
-      const userNum = +prompt('Enter your number', ``)
+      const userNum = +prompt('Enter your number', ``);
       if (isNaN(parseFloat(userNum)) || userNum === '') {
         console.log('Введите число');
         return startGame();
@@ -25,7 +25,6 @@
         break;
       }
     } while (!isNum(userNum));
-    
   };
   startGame();
 }

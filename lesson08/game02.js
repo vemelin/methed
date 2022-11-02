@@ -1,13 +1,19 @@
 'use strict'
 {
   const isNum = (n) => !isNaN(parseFloat(n)) && isFinite(n);
-  const randomNumber = () => Math.round(Math.random() * 101);
-  const startGame = (input) => {
-    const randomNum = randomNumber();
+  const randomNumber = (min, max) => {
+    let res;
+    min = +prompt('Min Number', ``),
+    max = +prompt('Max Number', ``);
+    res = Math.round(Math.random() * (max - min) + min);
+    return res;
+  };
+  const startGame = (...arg) => {
+    const randomNum = randomNumber(arg[0], arg[1]);
     console.log('Random Num: ' + randomNum);
-    let userNum;
+    let userNum, min, max, counter;
     do {
-      const userNum = +prompt('Enter your number', ``)
+      const userNum = +prompt('Enter your number', ``);
       if (isNaN(parseFloat(userNum)) || userNum === '') {
         console.log('Введите число');
         return startGame();
@@ -27,5 +33,5 @@
     } while (!isNum(userNum));
     
   };
-  startGame();
+  startGame(10, 20);
 }

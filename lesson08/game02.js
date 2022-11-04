@@ -35,13 +35,17 @@
       let findLastAttempt
       let attempts = Math.ceil((arg[1] - arg[0]) * 0.3);
       if (isNum(attempts)) findLastAttempt = [...Array(attempts).keys()].map((i) => i).length;
-      console.log(('------------------ \nВсего попыток ' + (attempts)));
+      if (attempts > 0) console.log(('------------------ \nВсего попыток ' + ((findLastAttempt - step) + 1)));
       if (step <= findLastAttempt || randomNum !== undefined) console.log(`Random Num: ${randomNum}`);
-      if (step < findLastAttempt) console.log('------------------ \nПопытка ' + (++step));
+      if (step <= findLastAttempt) console.log('------------------ \nПопытка ' + (step));
       if (arg[0] === 0 || arg[0] === '') {
         console.log('Игра закончена'); 
         return;
       } else {
+        if ((findLastAttempt - step) + 1 === 0) {
+          console.log('------------------ \nВы исчерпали лимит доверия!');
+          return;
+        } 
         let userNum = +prompt('Введите номер', '');
         let findNumb = arrNum.find(item => item === userNum);
         arrNum.push(userNum);
@@ -58,9 +62,6 @@
           } else {
             return startGame(arg[0], arg[1]);
           }
-        } if ((findLastAttempt - step) + 1 === 0) {
-          console.log('Вы исчерпали лимит доверия!');
-          return;
         } if (userNum === findNumb) {
           console.log('Это число вы уже вводили');
           return startGame(arg[0], arg[1]);

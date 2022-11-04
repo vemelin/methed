@@ -13,7 +13,7 @@
         return startGame();
       } if (userNum === null || userNum === 0) {
         console.log('Игра закончена'); 
-        break;
+        return;
       } if (userNum < randomNum) {
         console.log('Больше!');
         return startGame();
@@ -22,7 +22,7 @@
         return startGame();
       } else {
         console.log('Правильно!');
-        break;
+        return;
       }
     } while (!isNum(userNum));
   };

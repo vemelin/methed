@@ -7,6 +7,8 @@
     if (!isNum(min) || !isNum(max)) {
       console.log('Введите число');
       return askRange();
+    } if (max < min) {
+      return [max, min];
     } else {
       return [min, max];
     }

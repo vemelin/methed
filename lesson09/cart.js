@@ -2,7 +2,7 @@
 {
   const cart = {
     items: [],
-    totalPrice: 100,
+    totalPrice: 0,
     count: 0,
     isNum(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);

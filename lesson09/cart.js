@@ -8,7 +8,6 @@
       return !isNaN(parseFloat(n)) && isFinite(n);
     },
     getTotalPrice() {
-      // return this.isNum(this.totalPrice) ? this.totalPrice : console.log('Not a number');
       return this.calculateItemPrice();
     },
     add(name, price, qty) {
@@ -22,7 +21,6 @@
     increaseCount(inc) {
       if (typeof inc === 'string') return 0;
       return this.count = this.isNum(inc) ? this.count += inc : 0;
-      // return this.count += inc;
     },
     calculateItemPrice() {
       const sum = this.items.reduce((acc, i) => acc + (i.qty * i.price), 0);

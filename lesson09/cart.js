@@ -1,37 +1,52 @@
-'use strict'
+"use strict";
 {
   const cart = {
     items: [],
-    totalPrice: 0,
+    totalPrice: 100,
     count: 0,
-    getTotalPrice (totalPrice) {
-      return totalPrice;
+    isNum(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
     },
-    add (...arg) {
-      return arg;
+    getTotalPrice() {
+      // return this.isNum(this.totalPrice) ? this.totalPrice : console.log('Not a number');
+      return this.calculateItemPrice();
     },
-    increaseCount (...arg) {
-      return arg;
+    add(name, price, qty) {
+      const items = {
+        name,
+        price,
+        qty: this.increaseCount(qty),
+      }
+      return this.items.push(items);
     },
-    calculateItemPrice (...arg) {
-      return arg;
+    increaseCount(inc) {
+      if (typeof inc === 'string') return 0;
+      return this.count = this.isNum(inc) ? this.count += inc : 0;
+      // return this.count += inc;
     },
-    clear (...arg) {
-      return 'clear' + arg;
+    calculateItemPrice() {
+      const sum = this.items.reduce((acc, i) => acc + (i.qty * i.price), 0);
+      return sum;
     },
-    print (...arg) {
-      console.log(arg);
+    clear() {
+      const reset = {
+        items: [],
+        totalPrice: 0,
+        count: 0,
+      }
+      return Object.assign(cart, reset);
     },
-    cars: ['Hyundai', 'Kia', 'Toyota'],
-    status: {
-      active: true,
-      pending: true,
-      inProgress: true,
-    },
-    say() {
-      console.log(`Hello ${this.firstName}`);
+    print() {
+      this.items.length === 0 ? console.log(`The cart is empty`) :
+        this.items.map(i => console.log(`${i.name}: ${JSON.stringify(i.price)}, ${i.qty}\n`))
     },
   };
-  const res = new Object(cart);
-  console.log(res.getTotalPrice(10));
+  cart.add('Hyundai Sonata Limited', 36250, 1);
+  cart.add('Kia M5', 23790, '1'); // Integer validation if Quantity is string apply 0
+  cart.add('Toyota Camry', 29991, 1);
+  cart.add('Nissan Maxima', 38140, '30');
+  cart.items.forEach(i => console.log(i));
+  console.log(`\ngetTotalPrice: ${cart.getTotalPrice()}\n\n`);
+  // cart.clear();
+  cart.print()
 }

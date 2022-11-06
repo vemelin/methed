@@ -38,15 +38,15 @@
     },
     print() {
       this.items.length === 0 ? console.log(`The cart is empty`) :
-        this.items.map(i => console.log(`${i.name}: ${JSON.stringify(i.price)}, ${i.qty}\n`))
+        this.items.map(i => console.log(`${i.name}: ${JSON.stringify(i)}\n`))
     },
   };
-  cart.add('Hyundai Sonata Limited', 36250, 1);
+  cart.add('Hyundai Sonata', 36250, 1);
   cart.add('Kia M5', 23790, '1'); // Integer validation if Quantity is string apply 0
   cart.add('Toyota Camry', 29991, 1);
   cart.add('Nissan Maxima', 38140, '30');
   cart.items.forEach(i => console.log(i));
-  console.log(`\ngetTotalPrice: ${cart.getTotalPrice()}\n\n`);
+  console.log(`getTotalPrice: ${cart.getTotalPrice()}`);
   // cart.clear();
   cart.print()
 }

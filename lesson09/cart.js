@@ -5,7 +5,7 @@
     totalPrice: 0,
     count: 0,
     isNum(n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
+      return !Number.isNaN(parseFloat(n)) && isFinite(n);
     },
     getTotalPrice() {
       return this.calculateItemPrice();
@@ -23,15 +23,14 @@
       return this.count = this.isNum(inc) ? this.count += inc : 0;
     },
     calculateItemPrice() {
-      const sum = this.items.reduce((acc, i) => acc + (i.qty * i.price), 0);
-      return sum;
+      return this.items.reduce((acc, i) => acc + (i.qty * i.price), 0);
     },
     clear() {
       const reset = {
         items: [],
         totalPrice: 0,
         count: 0,
-      }
+      };
       return Object.assign(cart, reset);
     },
     print() {
@@ -43,8 +42,9 @@
   cart.add('Kia M5', 23790, '1'); // Integer validation if Quantity is string apply 0
   cart.add('Toyota Camry', 29991, 1);
   cart.add('Nissan Maxima', 38140, '30');
+  console.log(cart.totalPrice);
   cart.items.forEach(i => console.log(i));
   console.log(`getTotalPrice: ${cart.getTotalPrice()}`);
   // cart.clear();
-  cart.print()
+  cart.print();
 }

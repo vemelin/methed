@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const newValue = prompt("введите слово которое нужно переврнуть", "");
   const modifyString = (input) => {

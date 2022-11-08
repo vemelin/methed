@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const name = "iPhone 13 Pro",
     quantity = 5,

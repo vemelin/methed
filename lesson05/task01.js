@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const newValue = +prompt("Введите сумму", "");
   const currencyConverter = (input) => {

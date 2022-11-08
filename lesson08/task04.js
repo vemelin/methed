@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const randomArray = (...arg) => {
     let l = arg[0] > arg[1] ? arg[0] - arg[1] : arg[1] - arg[0];

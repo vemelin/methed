@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const allCashbox = [
     [12, 4500],

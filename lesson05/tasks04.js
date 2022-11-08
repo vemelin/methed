@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const calculate = (totalAmount, cartQuantity, promoCode) => {
     const firstPromoCode = totalAmount * cartQuantity * 0.3,

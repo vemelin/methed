@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const NOD = (x, y) => {
     if (y > x) return NOD(y, x);

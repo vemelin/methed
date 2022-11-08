@@ -1,5 +1,4 @@
-"use strict";
-
+'use strict';
 {
   const value = +prompt("Введите число", "");
   const isPrime = (input) => {

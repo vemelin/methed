@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const income = +prompt("Введите зарплату", "");
   let result = 0;

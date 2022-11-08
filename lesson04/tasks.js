@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   // Task # 2
   const rain = Math.round(Math.random() * 1);

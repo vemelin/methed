@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 {
   const myWeight = 120,
     speedLight = 3e8;

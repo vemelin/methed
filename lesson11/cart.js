@@ -46,7 +46,7 @@
   cart.add('Hyundai Sonata', 36250, '1'); // Integer validation if str assign 0
   cart.add('Toyota Camry', 29991, 1);
   cart.items.forEach(i => console.log(i));
-  cart.totalPrice = 0;
+  cart.totalPrice = 100;
   console.log(`Total Price: ${cart.totalPrice}`);
   // cart.clear();
   cart.print();

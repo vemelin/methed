@@ -12,7 +12,7 @@
       const items = {
         name,
         price,
-        qty: this.increaseCount(qty),
+        qty,
       };
       return this.items.push(items);
     },
@@ -22,7 +22,7 @@
     },
     calculateItemPrice() {
       // eslint-disable-next-line max-len
-      return this.items.reduce((acc, i) => (acc + (i.qty * i.price)) * this.discount, 0);
+      return this.items.reduce((acc, i) => (acc + (i.qty * i.price)), 0);
     },
     clear() {
       const reset = {
@@ -37,13 +37,10 @@
         // eslint-disable-next-line max-len
         this.items.map(i => console.log(`${i.name}: qty ${JSON.stringify(i.qty)} * ${JSON.stringify(i.price)} = ${i.qty * i.price}  \n`));
     },
-    get totalAmount() {
-      return this.totalPrice;
-    },
-    set totalAmount(n) {
+    set setTotalPrice(n) {
       !Number.isNaN(parseFloat(n)) && isFinite(n) && typeof n !== 'string' ?
       this.totalPrice = n :
-      this.totalPrice = this.calculateItemPrice();
+      this.totalPrice = Math.round(this.calculateItemPrice() * this.discount);
     },
     set setDiscount(promocode) {
       promocode === 'METHED' ? this.discount = 15 / 100 :
@@ -52,11 +49,10 @@
     },
   };
   cart.setDiscount = 'METHED';
-  cart.add('Hyundai Sonata', 36250, 1); // Integer validation if str assign 0
+  cart.add('Hyundai Sonata', 36250, 1);
   cart.add('Toyota Camry', 29991, 1);
-  // cart.items.forEach(i => console.log(i));
-  cart.totalAmount = '100';
-  console.log(`Total Price: ${cart.totalAmount} w/ discount ${cart.discount}`);
   // cart.clear();
+  cart.setTotalPrice = '';
   cart.print();
+  console.log(`Total Price: ${cart.totalPrice} w/ discount ${cart.discount}`);
 }

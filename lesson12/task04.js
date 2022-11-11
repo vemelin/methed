@@ -44,9 +44,6 @@
       this.totalPrice = n :
       this.totalPrice = this.calculateItemPrice();
     },
-    get setDiscount() {
-      return this.totalPrice;
-    },
     set setDiscount(promocode) {
       promocode === 'METHED' ? this.discount = 15 / 100 :
       promocode === 'NEWYEAR' ? this.discount = 21 / 100 :

@@ -47,9 +47,9 @@
     get setDiscount() {
       return this.totalPrice;
     },
-    set setDiscount(arg) {
-      arg === 'METHED' ? this.discount = 15 / 100 :
-      arg === 'NEWYEAR' ? this.discount = 21 / 100 :
+    set setDiscount(promocode) {
+      promocode === 'METHED' ? this.discount = 15 / 100 :
+      promocode === 'NEWYEAR' ? this.discount = 21 / 100 :
       this.discount = 0;
     },
   };

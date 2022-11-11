@@ -4,6 +4,7 @@
     items: [],
     totalPrice: 0,
     count: 0,
+    discount: 0,
     isNum(n) {
       return !Number.isNaN(parseFloat(n)) && isFinite(n);
     },

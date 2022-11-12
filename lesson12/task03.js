@@ -3,12 +3,6 @@
   const rectangle = {
     width: 5,
     height: 5,
-    get area() {
-      return (this.height * this.width) + 'cm';
-    },
-    get perimeter() {
-      return (2 * (this.height + this.width)) + 'cm';
-    },
     set newWidth(n) {
       !Number.isNaN(parseFloat(n)) && isFinite(n) && typeof n !== 'string' ?
       this.width = n :
@@ -18,6 +12,12 @@
       !Number.isNaN(parseFloat(n)) && isFinite(n) && typeof n !== 'string' ?
       this.height = n :
       this.height;
+    },
+    get area() {
+      return (this.height * this.width) + 'cm';
+    },
+    get perimeter() {
+      return (2 * (this.height + this.width)) + 'cm';
     },
   };
   rectangle.newWidth = '100'; // if string get default value;

@@ -5,6 +5,16 @@
     totalPrice: 0,
     count: 0,
     discount: 0,
+    set setTotalPrice(n) {
+      !Number.isNaN(parseFloat(n)) && isFinite(n) && typeof n !== 'string' ?
+      this.totalPrice = n :
+      this.totalPrice = Math.round(this.calculateItemPrice() * this.discount);
+    },
+    set setDiscount(promocode) {
+      promocode === 'METHED' ? this.discount = 15 / 100 :
+      promocode === 'NEWYEAR' ? this.discount = 21 / 100 :
+      this.discount = 0;
+    },
     isNum(n) {
       return !Number.isNaN(parseFloat(n)) && isFinite(n);
     },
@@ -36,16 +46,6 @@
       this.items.length === 0 ? console.log(`The cart is empty`) :
         // eslint-disable-next-line max-len
         this.items.map(i => console.log(`${i.name}: qty ${JSON.stringify(i.qty)} * ${JSON.stringify(i.price)} = ${i.qty * i.price}  \n`));
-    },
-    set setTotalPrice(n) {
-      !Number.isNaN(parseFloat(n)) && isFinite(n) && typeof n !== 'string' ?
-      this.totalPrice = n :
-      this.totalPrice = Math.round(this.calculateItemPrice() * this.discount);
-    },
-    set setDiscount(promocode) {
-      promocode === 'METHED' ? this.discount = 15 / 100 :
-      promocode === 'NEWYEAR' ? this.discount = 21 / 100 :
-      this.discount = 0;
     },
   };
   cart.setDiscount = 'METHED';

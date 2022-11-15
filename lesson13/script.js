@@ -1,4 +1,4 @@
 'use strict';
 {
-  window.start.game();
+  window.start.game('EN');
 }

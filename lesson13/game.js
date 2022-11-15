@@ -3,10 +3,12 @@
   window.start = (() => {
     const FIGURES_ENG = ['rock', 'scissors', 'paper'];
     const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-    // eslint-disable-next-line max-len
-    const UI_EN = ['Player wins!', 'Computer wins!', 'Draw', 'Select', 'User', 'Computer', 'Are you sure?', 'Results'];
-    // eslint-disable-next-line max-len
-    const UI_RU = ['Вы выиграли', 'Вы проиграли', 'Ничья', 'Выберите', 'Пользователь', 'Компьютер', 'Хотите выйти?', 'Результаты'];
+    const language = {
+      en: ['Player wins!', 'Computer wins!', 'Draw', 'Select', 'User', 'Computer', 'Are you sure?', 'Results'],
+      ru: ['Вы выиграли', 'Вы проиграли', 'Ничья', 'Выберите', 'Пользователь', 'Компьютер', 'Хотите выйти?', 'Результаты'],
+    };
+    const UI_EN = [...Array(language.en)].map((i) => i);
+    const UI_RU = [...Array(language.ru)].map((i) => i);
     const randomNum = (min, max) => {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -31,7 +33,7 @@
     const system = (language, user, bot) => {
       let arr = []; let lang = [];// eslint-disable-next-line max-len
       language === 'ENG' || language === 'EN' ? (arr = FIGURES_ENG) : (arr = FIGURES_RUS);
-      language === 'ENG' || language === 'EN' ? (lang = UI_EN) : (lang = UI_RU);
+      language === 'ENG' || language === 'EN' ? (lang = UI_EN[0]) : (lang = UI_RU[0]);
       const answer = getUserAnswer(lang, arr);
       user = answer[0] ?? 0; bot = answer[1] ?? 0;
       if (answer === 0) { // eslint-disable-next-line max-len

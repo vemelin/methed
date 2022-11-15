@@ -37,7 +37,7 @@
         alert(`${lang[7]}:\n${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}`);
         return;
       }
-      console.log(`Computer: ${bot} User: ${user}`);
+      console.log(`${lang[5]}: ${bot} ${lang[4]}: ${user}`);
       if((user === arr[0] && bot === arr[1]) 
       || (user === arr[2] && bot === arr[0]) 
       || (user === arr[1] && bot === arr[2])) {

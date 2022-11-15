@@ -42,7 +42,6 @@
       || (user === arr[2] && bot === arr[0]) 
       || (user === arr[1] && bot === arr[2])) {
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[0]}:`);
-        console.log(`User point: ${userPoint}`);
         userPoint++;
           return system(language);
         } if (user === bot){

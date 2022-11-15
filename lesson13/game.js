@@ -3,26 +3,10 @@
   window.start = (() => {
     const FIGURES_ENG = ['rock', 'scissors', 'paper'];
     const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-    const UI_EN = [
-      'Player wins!',
-      'Computer wins!',
-      'Draw',
-      'Select',
-      'User',
-      'Computer',
-      'Are you sure?',
-      'Results',
-    ];
-    const UI_RU = [
-      'Вы выиграли',
-      'Вы проиграли',
-      'Ничья',
-      'Выберите',
-      'Пользователь',
-      'Компьютер',
-      'Хотите выйти?',
-      'Результаты',
-    ];
+    // eslint-disable-next-line max-len
+    const UI_EN = ['Player wins!', 'Computer wins!', 'Draw', 'Select', 'User', 'Computer', 'Are you sure?', 'Results'];
+    // eslint-disable-next-line max-len
+    const UI_RU = ['Вы выиграли', 'Вы проиграли', 'Ничья', 'Выберите', 'Пользователь', 'Компьютер', 'Хотите выйти?', 'Результаты'];
     const randomNum = (min, max) => {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -45,19 +29,13 @@
     let userPoint = 0;
     let botPoint = 0;
     const system = (language, user, bot) => {
-      let arr = [];
-      let lang = [];
-      language === 'ENG' || language === 'EN' ?
-        (arr = FIGURES_ENG) :
-        (arr = FIGURES_RUS);
+      let arr = []; let lang = [];// eslint-disable-next-line max-len
+      language === 'ENG' || language === 'EN' ? (arr = FIGURES_ENG) : (arr = FIGURES_RUS);
       language === 'ENG' || language === 'EN' ? (lang = UI_EN) : (lang = UI_RU);
       const answer = getUserAnswer(lang, arr);
-      user = answer[0] ?? 0;
-      bot = answer[1] ?? 0;
-      if (answer === 0) {
-        alert(
-          `${lang[7]}:\n${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}`,
-        );
+      user = answer[0] ?? 0; bot = answer[1] ?? 0;
+      if (answer === 0) { // eslint-disable-next-line max-len
+        alert(`${lang[7]}:\n${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}`);
         return;
       }
       console.log(`${lang[5]}: ${bot} ${lang[4]}: ${user}`);
@@ -65,23 +43,17 @@
         (user === arr[0] && bot === arr[1]) ||
         (user === arr[2] && bot === arr[0]) ||
         (user === arr[1] && bot === arr[2])
-      ) {
-        alert(
-          `${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[0]}:`,
-        );
+      ) { // eslint-disable-next-line max-len
+        alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[0]}:`);
         userPoint++;
         return system(language);
       }
-      if (user === bot) {
-        alert(
-          `${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[2]}:`,
-        );
+      if (user === bot) {// eslint-disable-next-line max-len
+        alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[2]}:`);
         return system(language);
       } else {
-        botPoint++;
-        alert(
-          `${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[1]}:`,
-        );
+        botPoint++; // eslint-disable-next-line max-len
+        alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[1]}:`);
         return system(language);
       }
     };

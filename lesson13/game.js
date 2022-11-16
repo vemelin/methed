@@ -47,21 +47,21 @@
       console.log(`You: ${user} Bot: ${bot}`);
       if ((user === arr[0] && bot === arr[1]) || (user === arr[2] && bot === arr[0]) || (user === arr[1] && bot === arr[2])) {
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[0]}:`);
-        result.player = userPoint++;
+        result.player = ++userPoint;
         return system(language);
       }
       if (user === bot) {
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[2]}:`);
         return system(language);
       } else {
-        result.computer = botPoint++;
+        result.computer = ++botPoint;
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[1]}:`);
         return system(language);
       }
     };
     const game = (language) => {
       system(language);
-      console.log(`You: ${result.player + 1} Bot: ${result.computer + 1}`);
+      console.log(`You: ${result.player} Bot: ${result.computer}`);
     };
     return {
       game,

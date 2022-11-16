@@ -3,15 +3,13 @@
   window.start = (() => {
     const FIGURES_ENG = ['rock', 'scissors', 'paper'];
     const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-    const language = {
-      'en': ['Player wins!', 'Computer wins!', 'Draw', 'Select', 'User', 'Computer', 'Are you sure?', 'Results'],
-      'ru': ['Вы выиграли', 'Вы проиграли', 'Ничья', 'Выберите', 'Пользователь', 'Компьютер', 'Хотите выйти?', 'Результаты'],
-    };
-    const UI_EN = Object.values(language.en);
-    const UI_RU = Object.values(language.ru);
-    const result = {
+    const gameProps = {
       player: 0,
       computer: 0,
+      language: {
+        'en': ['Player wins!', 'Computer wins!', 'Draw', 'Select', 'User', 'Computer', 'Are you sure?', 'Results'],
+        'ru': ['Вы выиграли', 'Вы проиграли', 'Ничья', 'Выберите', 'Пользователь', 'Компьютер', 'Хотите выйти?', 'Результаты'],
+      },
       getUserAnswer(lang, arr) {
         const strConfirm = lang[6];
         const message = `${lang[3]}: ${arr[0]}, ${arr[1]}, ${arr[2]}`;
@@ -37,8 +35,8 @@
     const system = (language, user, bot) => {
       let arr = []; let lang = [];
       language === 'ENG' || language === 'EN' ? arr = FIGURES_ENG : arr = FIGURES_RUS;
-      language === 'ENG' || language === 'EN' ? lang = UI_EN : lang = UI_RU;
-      const answer = result.getUserAnswer(lang, arr);
+      language === 'ENG' || language === 'EN' ? lang = gameProps.language.en : lang = gameProps.language.ru;
+      const answer = gameProps.getUserAnswer(lang, arr);
       user = answer[0] ?? 0; bot = answer[1] ?? 0;
       if (answer === 0) {
         alert(`${lang[7]}:\n${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}`);
@@ -47,21 +45,21 @@
       console.log(`You: ${user} Bot: ${bot}`);
       if ((user === arr[0] && bot === arr[1]) || (user === arr[2] && bot === arr[0]) || (user === arr[1] && bot === arr[2])) {
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[0]}:`);
-        result.player = ++userPoint;
+        gameProps.player = ++userPoint;
         return system(language);
       }
       if (user === bot) {
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[2]}:`);
         return system(language);
       } else {
-        result.computer = ++botPoint;
+        gameProps.computer = ++botPoint;
         alert(`${lang[5]}: ${botPoint},\n${lang[4]}: ${userPoint}\n${lang[1]}:`);
         return system(language);
       }
     };
     const game = (language) => {
       system(language);
-      console.log(`You: ${result.player} Bot: ${result.computer}`);
+      console.log(`You: ${gameProps.player} Bot: ${gameProps.computer}`);
     };
     return {
       game,

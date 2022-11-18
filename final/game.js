@@ -96,17 +96,24 @@
         if (rpsGame.user === 0) {
           getBotNumber = this.getBotNum(setBotNum);
           setUserNum = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
+          if (!this.isNum(setUserNum)) {
+            console.log('Введите число');
+            return this.run();
+          }
+          if (setUserNum === 0) {
+            if (confirm(m) === true) return alert('Приятного дня!');
+          }
         }
         if (rpsGame.bot === 0) {
           setUserNum = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
+          if (!this.isNum(setUserNum)) {
+            console.log('Введите число');
+            return this.run();
+          }
+          if (setUserNum === 0) {
+            if (confirm(m) === true) return alert('Приятного дня!');
+          }
           getBotNumber = this.getBotNum(setBotNum);
-        }
-        if (setUserNum === 0 && setUserNum >= 1) {
-          if (confirm(m) === true) return alert('Приятного дня!');
-        }
-        if (!this.isNum(setUserNum)) {
-          console.log('Введите число');
-          return this.run();
         }
         if (setUserNum > this.user) {
           alert('Введеное значение больше количества шаров');

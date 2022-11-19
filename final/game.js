@@ -87,13 +87,10 @@
       },
       getUserAnswer() {
         const msg = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
-        // if (typeof msg === 'string' && msg !== 'undefined') {
         if (!this.isNum(msg) || msg === 0) {
           alert('Введите число, не равное 0');
           return this.getUserAnswer();
         }
-        // return this.getUserAnswer();
-        // }
         return msg;
       },
       setAdjustments() {
@@ -127,10 +124,6 @@
           setUserNum = this.getUserAnswer();
           this.mustEnterNum(setUserNum);
           getBotNumber = this.getBotNum(setBotNum);
-          // if (setUserNum === 0) {
-          //   const msg = 'Хотите выйти из игры!?';
-          //   if (confirm(msg) === true) return console.log('Пока!');
-          // }
         }
         if (setUserNum > this.user) {
           alert('Введеное значение больше количества шаров');
@@ -159,7 +152,6 @@
       },
     };
     const game = (language) => {
-      // rpsGame.run();
       squidGame.run();
       console.log(`Количество шариков\n` +
       `Игрок: ${squidGame.user}\n` +

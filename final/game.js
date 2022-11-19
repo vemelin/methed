@@ -143,6 +143,8 @@
         if (this.bot === 0 || this.user === 0) {
           rpsGame.user = 0;
           rpsGame.bot = 0;
+          rpsGame.userInc = 0;
+          rpsGame.botInc = 0;
           this.bot = 5;
           this.user = 5;
           const m = 'Хотите сыграть еще?';

@@ -87,9 +87,13 @@
       },
       getUserAnswer() {
         const msg = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
-        if (typeof msg === 'string' && msg !== 'undefined') {
+        // if (typeof msg === 'string' && msg !== 'undefined') {
+        if (!this.isNum(msg) || msg === 0) {
+          alert('Введите число, не равное 0');
           return this.getUserAnswer();
         }
+        // return this.getUserAnswer();
+        // }
         return msg;
       },
       setAdjustments() {
@@ -100,18 +104,17 @@
       },
       mustEnterNum(arg) {
         if (!this.isNum(arg)) {
-          console.log('Введите число');
+          alert('Введите число');
           return this.run();
         }
         return arg;
-      },
-      sayGoodBye(msg) {
-        if (confirm(msg) === true) return console.log('Приятного дня!');
       },
       run() {
         let getBotNumber; let setUserNum;
         const setBotNum = rpsGame.randomNum(1, 5);
         if (rpsGame.user === 0 && rpsGame.bot === 0) {
+          rpsGame.user = 0;
+          rpsGame.bot = 0;
           const quit = rpsGame.run();
           if (quit === 0) return;
         }
@@ -119,28 +122,21 @@
           getBotNumber = this.getBotNum(setBotNum);
           setUserNum = this.getUserAnswer();
           this.mustEnterNum(setUserNum);
-          if (setUserNum === 0) {
-            const msg = 'Хитрец, думал меня обвести!?';
-            return this.sayGoodBye(msg);
-          }
         }
         if (rpsGame.bot === 0) {
           setUserNum = this.getUserAnswer();
           this.mustEnterNum(setUserNum);
-          if (setUserNum === 0) {
-            const msg = 'Хитрец, думал меня обвести!?';
-            return this.sayGoodBye(msg);
-          }
           getBotNumber = this.getBotNum(setBotNum);
+          // if (setUserNum === 0) {
+          //   const msg = 'Хотите выйти из игры!?';
+          //   if (confirm(msg) === true) return console.log('Пока!');
+          // }
         }
         if (setUserNum > this.user) {
           alert('Введеное значение больше количества шаров');
           return this.run();
         }
-        console.log(`Bot: ${getBotNumber}`);
-        console.log(`Bot: ${setBotNum}`);
-        console.log(`User: ${setUserNum}`);
-        if (getBotNumber && this.isOdd(setUserNum)) {
+        if ((!getBotNumber) && this.isOdd(setUserNum)) {
           this.bot += setUserNum;
           this.user -= setUserNum;
           this.setAdjustments();
@@ -152,10 +148,12 @@
           if (this.bot <= 0) alert('У бота закончились шары');
         }
         if (this.bot === 0 || this.user === 0) {
-          const m = 'Хотите сыграть еще?';
-          if (confirm(m) === false) return;
+          rpsGame.user = 0;
+          rpsGame.bot = 0;
           this.bot = 5;
           this.user = 5;
+          const m = 'Хотите сыграть еще?';
+          if (confirm(m) === false) return;
         }
         this.run();
       },

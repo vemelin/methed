@@ -91,6 +91,10 @@
           alert('Введите число, не равное 0');
           return this.getUserAnswer();
         }
+        if (msg > this.user) {
+          alert('Введеное значение больше количества шаров');
+          return this.getUserAnswer();
+        }
         return msg;
       },
       setAdjustments() {
@@ -123,10 +127,10 @@
           this.mustEnterNum(setUserNum);
           getBotNumber = this.getBotNum(setBotNum);
         }
-        if (setUserNum > this.user) {
-          alert('Введеное значение больше количества шаров');
-          return this.run();
-        }
+        // if (setUserNum > this.user) {
+        //   alert('Введеное значение больше количества шаров');
+        //   return this.run();
+        // }
         if ((!getBotNumber) && this.isOdd(setUserNum)) {
           this.bot += setUserNum;
           this.user -= setUserNum;

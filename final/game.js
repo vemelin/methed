@@ -127,10 +127,6 @@
           this.mustEnterNum(setUserNum);
           getBotNumber = this.getBotNum(setBotNum);
         }
-        // if (setUserNum > this.user) {
-        //   alert('Введеное значение больше количества шаров');
-        //   return this.run();
-        // }
         if ((!getBotNumber) && this.isOdd(setUserNum)) {
           this.bot += setUserNum;
           this.user -= setUserNum;

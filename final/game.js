@@ -110,8 +110,6 @@
         let getBotNumber; let setUserNum;
         const setBotNum = rpsGame.randomNum(1, 5);
         if (rpsGame.user === 0 && rpsGame.bot === 0) {
-          rpsGame.user = 0;
-          rpsGame.bot = 0;
           const quit = rpsGame.run();
           if (quit === 0) return;
         }

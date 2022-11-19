@@ -82,36 +82,54 @@
       getBotNum(arg) {
         const m = ('Бот загадал нечетное число? Ок если четное');
         const getAnswer = (confirm(m) === true);
-        if (this.isOdd(arg)) return false;
-        if (!this.isOdd(arg) && getAnswer) return true;
+        if (this.isOdd(arg)) return true;
+        if (!this.isOdd(arg) && getAnswer) return false;
+      },
+      getUserAnswer() {
+        const msg = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
+        if (typeof msg === 'string' && msg !== 'undefined') {
+          return this.getUserAnswer();
+        }
+        return msg;
+      },
+      setAdjustments() {
+        if (this.user < 0) this.user = 0;
+        if (this.user > 10) this.user = 10;
+        if (this.bot < 0) this.bot = 0;
+        if (this.bot > 10) this.bot = 10;
+      },
+      mustEnterNum(arg) {
+        if (!this.isNum(arg)) {
+          console.log('Введите число');
+          return this.run();
+        }
+        return arg;
+      },
+      sayGoodBye(msg) {
+        if (confirm(msg) === true) return console.log('Приятного дня!');
       },
       run() {
         let getBotNumber; let setUserNum;
         const setBotNum = rpsGame.randomNum(1, 5);
-        const m = 'Вы хотите закончить игру?';
         if (rpsGame.user === 0 && rpsGame.bot === 0) {
           const quit = rpsGame.run();
           if (quit === 0) return;
         }
-        if (rpsGame.user === 0) {
+        if (rpsGame.user === 0 && setUserNum !== 0) {
           getBotNumber = this.getBotNum(setBotNum);
-          setUserNum = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
-          if (!this.isNum(setUserNum)) {
-            console.log('Введите число');
-            return this.run();
-          }
+          setUserNum = this.getUserAnswer();
+          this.mustEnterNum(setUserNum);
           if (setUserNum === 0) {
-            if (confirm(m) === true) return alert('Приятного дня!');
+            const msg = 'Хитрец, думал меня обвести!?';
+            return this.sayGoodBye(msg);
           }
         }
         if (rpsGame.bot === 0) {
-          setUserNum = +prompt(`Ты готов? Осталось ${this.user} шаров`, '');
-          if (!this.isNum(setUserNum)) {
-            console.log('Введите число');
-            return this.run();
-          }
+          setUserNum = this.getUserAnswer();
+          this.mustEnterNum(setUserNum);
           if (setUserNum === 0) {
-            if (confirm(m) === true) return alert('Приятного дня!');
+            const msg = 'Хитрец, думал меня обвести!?';
+            return this.sayGoodBye(msg);
           }
           getBotNumber = this.getBotNum(setBotNum);
         }
@@ -119,26 +137,23 @@
           alert('Введеное значение больше количества шаров');
           return this.run();
         }
+        console.log(`Bot: ${getBotNumber}`);
+        console.log(`Bot: ${setBotNum}`);
+        console.log(`User: ${setUserNum}`);
         if (getBotNumber && this.isOdd(setUserNum)) {
           this.bot += setUserNum;
           this.user -= setUserNum;
-          if (this.user < 0) this.user = 0;
-          if (this.user > 10) this.user = 10;
-          if (this.bot < 0) this.bot = 0;
-          if (this.bot > 10) this.bot = 10;
+          this.setAdjustments();
           if (this.user <= 0) alert('У вас закончились шары');
         } else {
           this.user += setBotNum;
           this.bot -= setBotNum;
-          if (this.user < 0) this.user = 0;
-          if (this.user > 10) this.user = 10;
-          if (this.bot < 0) this.bot = 0;
-          if (this.bot > 10) this.bot = 10;
+          this.setAdjustments();
           if (this.bot <= 0) alert('У бота закончились шары');
         }
         if (this.bot === 0 || this.user === 0) {
-          const m = 'Хотите сиграть еще?';
-          if (confirm(m) === false) return alert('Тогда пока!');
+          const m = 'Хотите сыграть еще?';
+          if (confirm(m) === false) return;
           this.bot = 5;
           this.user = 5;
         }

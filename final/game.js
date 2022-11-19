@@ -143,14 +143,14 @@
           if (this.bot <= 0) alert('У бота закончились шары');
         }
         if (this.bot === 0 || this.user === 0) {
+          const m = 'Хотите сыграть еще?';
+          if (confirm(m) === false) return;
           rpsGame.user = 0;
           rpsGame.bot = 0;
           rpsGame.userInc = 0;
           rpsGame.botInc = 0;
           this.bot = 5;
           this.user = 5;
-          const m = 'Хотите сыграть еще?';
-          if (confirm(m) === false) return;
         }
         this.run();
       },

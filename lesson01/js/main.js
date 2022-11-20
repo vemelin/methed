@@ -38,4 +38,4 @@
     
     // Rewrite Yellow Title
     thirdBlock.querySelector('h2').innerText = thirdBlock.querySelector('img').getAttribute('alt');
-    }
+}

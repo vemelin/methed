@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Помыть кота",
+    "status": {
+      "context": "Выполнена",
+      "isActive": true
+    }
+  },
+  {
+    "id": 2,
+    "title": "Купить слона",
+    "status": {
+      "context": "В процессе",
+      "isActive": false
+    }
+  }
+]

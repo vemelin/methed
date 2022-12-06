@@ -18,7 +18,7 @@ export class Model {
   saveTask = (key, id, newName) => {
     const dataStorage = this.getStorage(key);
     const temp = dataStorage.filter(item => {
-      if (item.id == id) {
+      if (item.id === id) {
         item.title = newName;
       }
       return item;
@@ -28,7 +28,7 @@ export class Model {
   updateTaskStatus = (key, id, status, attribute, btnText) => {
     const dataStorage = this.getStorage(key);
     const temp = dataStorage.filter(item => {
-      if (item.id == id) {
+      if (item.id === id) {
         item.status["context"] = status;
         item.status["isActive"] = false;
         item.status["attribute"] = attribute;
@@ -48,6 +48,5 @@ export class Model {
       priority: data.get('priority'),
       status: {context: 'В процессе', isActive: true, btnText: 'Завершить'},
     }
-    return task;
   }
 }

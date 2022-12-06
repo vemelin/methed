@@ -17,22 +17,29 @@ export class View {
       </button>
     `);
 
-    this.$el.insertAdjacentHTML('beforeend', this.tableHeader());
+    const myModal = new bootstrap.Modal(document.getElementById("myModal"));
+    myModal.show();
 
     document.querySelector('.modal-form').addEventListener('submit', e => {
       e.preventDefault();
+
       const userName = e.target.querySelector('#name').value;
-      const tbody = document.querySelector('tbody');
+
+      this.getTable(userName);
 
       document.querySelector('body').setAttribute('userName', userName);
 
       this.addTask(userName);
       this.controller.taskControls(userName);
-
-      const row = this.data.getStorage(userName).map(task => this.createRow(task))
-      tbody.innerHTML = row.join('');
+      
       e.target.reset();
     });
+  }
+  getTable = userName => {
+    this.$el.insertAdjacentHTML('beforeend', this.tableHeader());
+    const tbody = document.querySelector('tbody');
+    const row = this.data.getStorage(userName).map(task => this.createRow(task))
+    tbody.innerHTML = row.join('');
   }
   addStyles(){
     const style = `

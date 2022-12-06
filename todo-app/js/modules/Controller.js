@@ -23,7 +23,7 @@ export class Controller {
         target.closest('.cta').classList.add('table-success');
         if (target.textContent.trim() === 'Завершить') {
           target.textContent = 'Продолжить';
-          // target.classList.add('btn-light')
+          // Change status
           {
             const id = target.closest('.cta').children[0].textContent.trim();
             const status ='Выполнена';
@@ -33,7 +33,7 @@ export class Controller {
             this.model.updateTaskStatus(userName, id, status, attribute, btnText);
           }
         } else if (target.textContent.trim() === 'Продолжить') {
-          // target.classList.remove('btn-light');
+          // Change status
           target.closest('.cta').children[1].classList.remove('text-decoration-line-through')
           target.closest('.cta').classList.add('table-light');
           target.textContent = 'Завершить';

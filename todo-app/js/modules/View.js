@@ -11,11 +11,6 @@ export class View {
     // userName = userName.userName ?? [];
     this.$el.classList.add('vh-100', 'w-100', 'd-flex', 'align-items-center', 'justify-content-center', 'flex-column');
     this.$el.insertAdjacentHTML('afterbegin', this.formAppend());
-    document.querySelector('.app-container').insertAdjacentHTML('beforeend', `
-      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#myModal">
-        Аторизоваться
-      </button>
-    `);
 
     const myModal = new bootstrap.Modal(document.getElementById("myModal"));
     myModal.show();
@@ -36,10 +31,16 @@ export class View {
     });
   }
   getTable = userName => {
+    document.querySelector('.app-container').insertAdjacentHTML('beforeend', `
+      <button type="button" id="exit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#myModal">
+        Выйти
+      </button>
+    `);
     this.$el.insertAdjacentHTML('beforeend', this.tableHeader());
     const tbody = document.querySelector('tbody');
     const row = this.data.getStorage(userName).map(task => this.createRow(task))
     tbody.innerHTML = row.join('');
+    document.querySelector('#exit').addEventListener('click', () => window.location.reload());
   }
   addStyles(){
     const style = `
@@ -158,7 +159,6 @@ export class View {
       }
       this.data.addTask(userName, task);
       const row = this.data.getStorage(userName).map(task => this.createRow(task));
-      console.log(row);
       tbody.innerHTML = row.join('');
       e.target.reset();
     });

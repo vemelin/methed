@@ -34,7 +34,6 @@ export class Model {
         item.status["attribute"] = attribute;
         item.status["btnText"] = btnText;
       }
-      console.log(item);
       return item;
     });
     localStorage.setItem(key, JSON.stringify(temp));

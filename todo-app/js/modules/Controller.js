@@ -21,7 +21,6 @@ export class Controller {
       } if (target.closest('.btn-success')) {
         target.closest('.cta').classList.remove('table-light');
         target.closest('.cta').classList.add('table-success');
-        // target.closest('.cta').children[1].classList.add('text-decoration-line-through')
         if (target.textContent.trim() === 'Завершить') {
           target.textContent = 'Продолжить';
           // target.classList.add('btn-light')

@@ -1,4 +1,3 @@
-// import data from '../tasks.json' assert {type: 'json'};
 export class Model {
   constructor() {
     // const data = this.store(key);

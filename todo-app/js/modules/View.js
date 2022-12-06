@@ -31,13 +31,6 @@ export class View {
 
       const row = this.data.getStorage(userName).map(task => this.createRow(task))
       tbody.innerHTML = row.join('');
-
-    // RENDER LIST
-    const renderToDo = (userName) => {
-      const rowsArray = getStorage(userName).map(item => createRow(item));
-      toDoTableBody.append(...rowsArray);
-    };
-
       e.target.reset();
     });
   }

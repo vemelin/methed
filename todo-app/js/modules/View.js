@@ -7,6 +7,7 @@ export class View {
     this.addStyles();
     this.renderPage();
   }
+  isNum = (n) => !isNaN(parseFloat(n)) && isFinite(n);
   renderPage() {
     // userName = userName.userName ?? [];
     this.$el.classList.add('vh-100', 'w-100', 'd-flex', 'align-items-center', 'justify-content-center', 'flex-column');
@@ -18,9 +19,25 @@ export class View {
     document.querySelector('.modal-form').addEventListener('submit', e => {
       e.preventDefault();
       const userName = e.target.querySelector('#name').value;
+
+      if(this.isNum(userName)) return;
+      if(userName) myModal.hide();
+
       this.getTable(userName);
       this.addTask(userName);
       this.controller.taskControls(userName);
+
+    //   function addUser(){
+        
+    //     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //     if(re.test(email)){
+    //         $('#myModal').modal('hide');
+    //         console.log(email + " Success");
+    //     }else{
+    //         console.log(email + " Failed")
+    //     }
+    // }
+      
       e.target.reset();
     });
   }
@@ -64,7 +81,8 @@ export class View {
               </div>
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-              <button id="the-submit" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Авторизоваться</button>
+              <!-- <button id="the-submit" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Авторизоваться</button> -->
+              <button id="the-submit" type="submit" class="btn btn-primary">Авторизоваться</button>
               </div>
             </form>
           </div>

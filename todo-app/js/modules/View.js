@@ -20,7 +20,7 @@ export class View {
       e.preventDefault();
       const userName = e.target.querySelector('#name').value;
 
-      if(this.isNum(userName)) return;
+      if(this.isNum(userName) || userName.trim() === '') return;
       if(userName) myModal.hide();
 
       this.getTable(userName);

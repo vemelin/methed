@@ -17,16 +17,10 @@ export class View {
 
     document.querySelector('.modal-form').addEventListener('submit', e => {
       e.preventDefault();
-
       const userName = e.target.querySelector('#name').value;
-
       this.getTable(userName);
-
-      document.querySelector('body').setAttribute('userName', userName);
-
       this.addTask(userName);
       this.controller.taskControls(userName);
-      
       e.target.reset();
     });
   }
@@ -146,9 +140,12 @@ export class View {
   addTask(userName){
     document.querySelector('form').addEventListener('submit', e => {
       e.preventDefault();
+
+      // Trim String & Check if the input field is empty then return
+      const taskInputField = document.querySelector('.form-control');
+      if(taskInputField.value === 0 || taskInputField.value.trim() === '') return;
+
       const tbody = document.querySelector('tbody');
-      // this.controller.renderData(e);
-      // const randomNum = Math.floor(Math.random() * 50);
       const randomNum = Math.random().toString().substring(2, 10);
       const data = new FormData(e.target);
       const task = {

@@ -33,10 +33,10 @@ export class Controller {
             this.model.updateTaskStatus(userName, id, status, attribute, btnText);
           }
         } else if (target.textContent.trim() === 'Продолжить') {
-          // Change status
           target.closest('.cta').children[1].classList.remove('text-decoration-line-through')
           target.closest('.cta').classList.add('table-light');
           target.textContent = 'Завершить';
+          // Change status
           {
             const id = target.closest('.cta').children[0].textContent.trim();
             const status = 'В процессе';
@@ -49,6 +49,7 @@ export class Controller {
       } if (target.closest('.edit')) {
         if (target.textContent.trim() === 'Редактировать') {
           target.closest('.cta').children[1].contentEditable = "true";
+          target.closest('.cta').children[1].focus();
           const id = target.closest('.cta').children[0].textContent.trim();
           const editTitle = target.closest('.cta').children[1];
           target.addEventListener('blur', () => {

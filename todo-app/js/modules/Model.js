@@ -1,6 +1,6 @@
 export class Model {
   constructor() {
-    // const data = this.store(key);
+    // const data = `Connect: modal`;
   }
   setStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
   getStorage = key => JSON.parse(localStorage.getItem(key)) || [];

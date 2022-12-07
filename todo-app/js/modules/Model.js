@@ -2,7 +2,7 @@ export class Model {
   constructor() {
     // const data = `Connect: modal`;
   }
-  setStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+  setStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data.sort().reverse()));
   getStorage = key => JSON.parse(localStorage.getItem(key)) || [];
 
   addTask = (key, task) => {

@@ -25,19 +25,7 @@ export class View {
 
       this.getTable(userName);
       this.addTask(userName);
-      this.controller.taskControls(userName);
-
-    //   function addUser(){
-        
-    //     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //     if(re.test(email)){
-    //         $('#myModal').modal('hide');
-    //         console.log(email + " Success");
-    //     }else{
-    //         console.log(email + " Failed")
-    //     }
-    // }
-      
+      this.controller.taskControls(userName);      
       e.target.reset();
     });
   }

@@ -7,7 +7,7 @@
   document.body.append(p);
 
   input.addEventListener('keyup', e => {
-    setTimeout((result) => {
+    setTimeout(result => {
       p.textContent = result;
     }, 300, e.target.value)
   });

@@ -6,17 +6,17 @@
   document.body.append(input);
   document.body.append(p);
 
-  const debounce = (func, wait) => {
+  const debounce = (func, time) => {
     return function execute(...args) {
       let previousCall = this.lastCall;
-      if (previousCall && this.lastCall - previousCall <= wait) {
+      if (previousCall && this.lastCall - previousCall <= time) {
         clearTimeout(this.lastCall);
       }
-      this.lastCallTimer = setTimeout(() => func(...args), wait)
+      this.lastCallTimer = setTimeout(() => func(...args), time)
     }
   };
 
-  const getInputData = () => p.textContent = input.value;
-  const debounceHandle = debounce(getInputData, 300);
+  const setInputData = () => p.textContent = input.value;
+  const debounceHandle = debounce(setInputData, 300);
   input.addEventListener('keyup', debounceHandle);
 }

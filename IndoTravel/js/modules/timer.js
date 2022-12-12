@@ -19,8 +19,7 @@ const timer = (expirationDate, element) => {
   };
 
   const declension = (num, words) => words[(num % 100 > 4 && num % 100 < 20) ?
-      2 :
-      [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+      2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
 
   const start = () => {
     const timer = remainedTime();
@@ -50,10 +49,10 @@ const timer = (expirationDate, element) => {
       document.querySelector('.hero__timer').remove();
     }
 
-    // Hilight End Of Time
+    // Hilight End Of Promo
     const hilightEndOfPromo = () => {
       const hoursLeft = Math.floor(timer.timeLeft / 1000 / 60 / 60);
-      const timerStyle = (color) => {
+      const timerStyle = color => {
         const timerContainer = document.querySelectorAll('.hero__timer');
         timerContainer.forEach(item => {
           item.style.cssText = `background: ${color};`;
@@ -89,7 +88,7 @@ export const renderTimer = () => {
   const el = document.querySelectorAll('[data-timer-deadline]');
   el.forEach(item => {
     const date = item.dataset.timerDeadline;
-    item.innerHTML = renderView(date);
+    item.innerHTML = renderView();
     timer(date, item);
   });
 };

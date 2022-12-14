@@ -17,7 +17,7 @@
     }
   };
   
-  const setInputData = () => p.textContent = input.value;
-  const debounceHandle = debounce(setInputData, 300);
+  const renderData = () => p.textContent = input.value;
+  const debounceHandle = debounce(renderData, 300);
   input.addEventListener('keyup', debounceHandle);
 }

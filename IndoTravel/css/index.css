@@ -7,7 +7,9 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-
+ * {
+  overflow-anchor: none;
+}
 html {
 		line-height: 1.15;
 		/* 1 */
@@ -612,6 +614,7 @@ p {
 		-webkit-transition: 0.5s;
 		-o-transition: 0.5s;
 		transition: 0.5s;
+		z-index: 1;
 }
 
 .header__menu_active {

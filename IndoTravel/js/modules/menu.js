@@ -20,7 +20,7 @@ export const humburger = () => {
       close();
     }
     if (target.matches('.header__menu-button')){
-      toggle()
+      toggle();
     }
   });
 

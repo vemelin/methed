@@ -1,3 +1,4 @@
+import { renderData as bookTrip } from "./modules/renderBookTripForm.js";
 import { renderTimer } from "./modules/timer.js";
 import { accordion } from "./modules/accordion.js";
 import { humburger } from "./modules/menu.js";
@@ -14,3 +15,4 @@ document.addEventListener('DOMContentLoaded', function() {
 accordion();
 humburger();
 scrollFlight();
+bookTrip();

@@ -21,10 +21,6 @@ export const renderData = async () => {
   
   dateTrip.innerHTML = dateTitle + '';
   dateTrip.append(...dates);
-
-  data.map(i => {
-    console.log(i);
-  });
   
   let peopleQty = 0; let startDate = 0; let endDate = 0;
   element.forEach(el => {

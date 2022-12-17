@@ -28,11 +28,6 @@ export const renderData = async () => {
       const dateInfo = document.querySelector('.reservation__data');
       
       data.filter(i => {
-        const formData = {
-          userQty: peopleQty,
-          start: startDate,
-          end: endDate,
-        }
         if(i.date === target.value) {
           peopleNumber.innerHTML = pepoleNumber + '';
           totalAmountElement.textContent = `${0}₽`

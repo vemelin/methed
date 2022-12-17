@@ -9,8 +9,6 @@ export const renderData = async () => {
   const totalAmountElement = document.querySelector('.reservation__price');
     totalAmountElement.textContent = `${0}₽`
 
-  data.map(i => console.log(i))
-  
   const dates = data.map(i => {
     const option = document.createElement('option');
     option.setAttribute('value', i.date);
@@ -29,7 +27,8 @@ export const renderData = async () => {
       data.filter(i => {
         if(i.date === target.value) {
           peopleNumber.innerHTML = pepoleNumber + '';
-
+          totalAmountElement.textContent = `${0}₽`
+          
           for (let index = i['min-people']; index <= i['max-people']; index++) {
             const option = document.createElement('option');
             option.setAttribute('value', index);

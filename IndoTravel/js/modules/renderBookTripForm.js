@@ -23,6 +23,7 @@ export const renderData = async () => {
   dateTrip.append(...dates);
   
   let peopleQty = 0; let startDate = 0; let endDate = 0;
+  
   element.forEach(el => {
     el.addEventListener('change', ({target}) => {
       const dateInfo = document.querySelector('.reservation__data');

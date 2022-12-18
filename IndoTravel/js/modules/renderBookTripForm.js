@@ -9,6 +9,9 @@ export const renderData = async () => {
   const totalAmountElement = document.querySelector('.reservation__price');
     totalAmountElement.textContent = `${0}₽`
 
+  const dateInfo = document.querySelector('.reservation__data');
+    dateInfo.textContent = `Выберите дату`;
+
   const dates = data.map(i => {
     const option = document.createElement('option');
     option.setAttribute('value', i.date);
@@ -26,8 +29,6 @@ export const renderData = async () => {
   
   element.forEach(el => {
     el.addEventListener('change', ({target}) => {
-      const dateInfo = document.querySelector('.reservation__data');
-      
       data.filter(i => {
         if(i.date === target.value) {
           peopleNumber.innerHTML = pepoleNumber + '';

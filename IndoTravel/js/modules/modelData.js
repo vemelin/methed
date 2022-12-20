@@ -1,5 +1,1 @@
-export const getData = async () => {
-  const res = await fetch('./js/date.json');
-  const data = await res.json();
-  return data;
-};
+export const getData = async () => await(await fetch('./js/date.json')).json();

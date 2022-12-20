@@ -3,6 +3,7 @@ import { getData } from "./modelData.js";
 export const renderData = async () => {
   const data = await getData();
 
+  // Selectors
   const element = document.querySelectorAll('select');
   const selector = document.querySelectorAll('select');
   const peopleNumber = document.querySelector('#reservation__people');
@@ -13,12 +14,15 @@ export const renderData = async () => {
   const dateInfo = document.querySelector('.reservation__data');
     dateInfo.textContent = `Выберите дату`;
 
+  // Old stuff, needs to get rid off
   // const dates = data.map(i => {
   //   const option = document.createElement('option');
   //   option.setAttribute('value', i.date);
   //   option.append(i.date)
   //   return option;
   // });
+
+  // Preload dates
   const dates = () => (data.map(i => {
       const option = document.createElement('option');
       option.append(i.date)
@@ -29,6 +33,7 @@ export const renderData = async () => {
   const dateText = ['<option>Выберите дату</option>', '<option>Дата путешествия</option>'];
   const qtyText = 'Количество человек';
 
+  // Render selectors with preloaded dates
   selector.forEach(el => {
     if (el.matches('#tour__date')) {
       el.innerHTML = dateText[0] + '';
@@ -68,6 +73,7 @@ export const renderData = async () => {
     el.insertAdjacentHTML('afterbegin', `<option selected>${txt}</option>`);
   };
   
+  // Reflect Changes when select # of people
   element.forEach(el => {
     el.addEventListener('change', ({target}) => {
       data.filter(i => {

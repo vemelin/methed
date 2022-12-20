@@ -47,7 +47,7 @@ export const renderData = async () => {
   
   let peopleQty = 0; let startDate = 0; let endDate = 0;
 
-  //Pull data & Scrolll Down
+  // Pull data & Scroll Down
   const tourBtn = document.querySelector('.tour__button');
   tourBtn.addEventListener('click', e => {
     e.preventDefault();

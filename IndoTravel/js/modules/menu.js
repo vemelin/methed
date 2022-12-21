@@ -25,7 +25,7 @@ export const humburger = () => {
   });
 
   const startAnimation = (duration, callback) => {
-    let startAnimation = NaN;    
+    let startAnimation = NaN;
 
     requestAnimationFrame(function step(timestamp) {
       startAnimation ||= timestamp;

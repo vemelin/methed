@@ -70,7 +70,7 @@ export const renderData = async () => {
       };
       el.append(option(index));
     }
-    el.insertAdjacentHTML('afterbegin', `<option selected>${txt}</option>`);
+    el.insertAdjacentHTML('afterbegin', `<option selected value="0">${txt}</option>`);
   };
   
   // Reflect Changes when select # of people

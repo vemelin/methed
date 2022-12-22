@@ -1,4 +1,7 @@
-import { getData } from "./modelData.js";
+// import { getData } from "./modelData.js";
+import { fetchRequest, getData } from './modelData.js';
+const url = 'https://discreet-exuberant-canidae.glitch.me/api/goods/';
+const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
 
 export const renderData = async () => {
   const data = await getData();
@@ -13,14 +16,6 @@ export const renderData = async () => {
 
   const dateInfo = document.querySelector('.reservation__data');
     dateInfo.textContent = `Выберите дату`;
-
-  // Old stuff, needs to get rid off
-  // const dates = data.map(i => {
-  //   const option = document.createElement('option');
-  //   option.setAttribute('value', i.date);
-  //   option.append(i.date)
-  //   return option;
-  // });
 
   // Preload dates
   const dates = () => (data.map(i => {
@@ -93,3 +88,80 @@ export const renderData = async () => {
   })
   
 };
+
+// Send Data: Trip Tour Form
+const form = document.querySelectorAll('form');
+form.forEach(el => {
+  if (el.classList.contains('reservation__form')) {
+    el.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      // const form = Object.fromEntries(formData);
+      el.reset();
+
+      fetchRequest(urlPost, {
+        method: 'POST',
+        body: {
+          date: formData.get('dates'),
+          peopleNumber: formData.get('people'),
+          fullName: formData.get('fullName'),
+          phoneNumber: formData.get('phoneNumber'),
+          totalPrice: +document.querySelector('.reservation__price').textContent.slice(0, -1),
+        },
+        callback: (err, data) => {
+          if (err) {
+            console.warn(err, data);
+            form.textContent = err;
+          }
+          form.textContent = `Request successfully sent, ID# is ${data.id}`;
+          const p = document.createElement('p');
+          p.textContent = `Спасибо, ваша заявка ${data.id} обрабатывается`;
+          el.append(p);
+          const tick = setInterval(() => {
+            p.remove();
+            clearInterval(tick)
+          }, 3000)
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    });
+  }
+  if (el.classList.contains('footer__form')) {
+    el.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+
+      fetchRequest(urlPost, {
+        method: 'POST',
+        body: {
+          email: formData.get('email'),
+        },
+        callback: (err, data) => {
+          if (err) {
+            console.warn(err, data);
+            form.textContent = err;
+          }
+          const h2 = document.querySelector('.footer__title.footer__form-title');
+          const p = document.querySelector('.footer__text');
+          const emailField = document.querySelector('.footer__input-wrap');
+          h2.textContent = `Ваша заявка успешно отправлена`;
+          p.textContent = `Наши менеджеры свяжутся с вами в течении 3-х рабочих дней`;
+          emailField.remove();
+          const tick = setInterval(() => {
+            h2.textContent = `Есть вопросы по туру?`;
+            p.textContent = `Введите свой Email и мы свяжемся с вами в течении 3 рабочих дней`;
+            el.append(emailField);
+            clearInterval(tick)
+          }, 5000)
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    });
+  }
+});

@@ -43,7 +43,7 @@ modalWrapper.style.cssText = `
   transition: 0.5s;
   z-index: 1;
   display: grid;
-  place-items: center;
+  place-items: center; 
 `;
 
 export const modalMsg = (title, txt, svg) => {
@@ -78,6 +78,7 @@ export const modalMsg = (title, txt, svg) => {
       const seconds = endTime - inc;
       if (inc >= endTime) {
         overlay.remove();
+        modalWrapper.innerHTML = '';
         clearInterval(tick);
       }
       p.textContent = txt + '\n' +`Окно закроется через ${seconds}, нажмите ESC для выхода`;

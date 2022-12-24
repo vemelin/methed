@@ -16,12 +16,24 @@ export const scrollFlight = () => {
   airplane.classList.add('pulse');
 
   // Airplane flight speed
-  {let uturn = 0.10;
-    document.onwheel = (e) => {
-    const scroll = e.deltaY;
-    uturn = uturn + 0.02 / scroll;
-    airplane.style.transition = `all ${Math.abs(uturn)}s`;
-    }}
+  { document.onwheel = (e) => {
+      const scroll = Math.abs(e.deltaY);
+      let delta;
+      if (scroll < 50) {
+        delta = scroll * 0.15 / 1;
+        console.log(1);
+        airplane.style.transitionDuration = `${delta}s`;
+      } else if (scroll < 100) {
+        delta = scroll * 0.1 / 100;
+        airplane.style.transitionDuration = `${delta}s`;
+      } 
+      else if (scroll < 200) {
+        delta = scroll * 0.1 / 300;
+        console.log(3);
+        airplane.style.transitionDuration = `${delta}s`;
+      }
+    }
+  };
 
   const el = document.documentElement;
   const airplanePosition = () => {

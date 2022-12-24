@@ -11,13 +11,22 @@ export const scrollFlight = () => {
     pointer-events: none;
     background: url('/IndoTravel/img/temp/airplane.svg') center/contain no-repeat;
     z-index: 999;
-    transition: all 0.5s;
   `;
-  document.body.append(airplane)
-  airplane.classList.add('pulse')
+  document.body.append(airplane);
+  airplane.classList.add('pulse');
+
+  // Airplane flight speed
+  {let uturn = 0.10;
+    document.onwheel = (e) => {
+    const scroll = e.deltaY;
+    uturn = uturn + 0.02 / scroll;
+    console.log(Math.abs(uturn));
+    airplane.style.transition = `all ${Math.abs(uturn)}s`;
+    }}
 
   const el = document.documentElement;
   const airplanePosition = () => {
+
     const maxTop = window.innerHeight - airplane.clientHeight;
     const maxScroll = el.scrollHeight - el.clientHeight;
     const scrollPercent = (window.scrollY * 100 / maxScroll);

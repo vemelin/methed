@@ -1,7 +1,20 @@
 // import { getData } from "./modelData.js";
 import { fetchRequest, getData } from './modelData.js';
-const url = 'https://discreet-exuberant-canidae.glitch.me/api/goods/';
+import { modalMsg } from "./formModals.js";
+// const urlGet = 'https://discreet-exuberant-canidae.glitch.me/api/goods/';
+// const urlGet = 'https://cms-backend-biln.onrender.com/db_goods.json';
 const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
+
+const successMsg = {
+  title: 'Ваша заявка успешно отправлена.',
+  txt: 'Наши менеджеры свяжутся с вами в течении 3-х рабочих дней.',
+  svg: true,
+};
+const errorMsg = {
+  title: 'Упс... Что-то пошло не так.',
+  txt: 'Не удалось отправить заявку. Пожалуйста, повторите отправку еще раз.',
+  svg: false,
+};
 
 export const renderData = async () => {
   const data = await getData();
@@ -83,10 +96,8 @@ export const renderData = async () => {
         }
         dateInfo.textContent = `${startDate} ноября - ${endDate} декабря, ${peopleQty} человека`;
       });
-
     });
-  })
-  
+  });
 };
 
 // Send Data: Trip Tour Form
@@ -97,7 +108,6 @@ form.forEach(el => {
       e.preventDefault();
 
       const formData = new FormData(e.target);
-      // const form = Object.fromEntries(formData);
       el.reset();
 
       fetchRequest(urlPost, {
@@ -113,15 +123,10 @@ form.forEach(el => {
           if (err) {
             console.warn(err, data);
             form.textContent = err;
+            modalMsg(errorMsg.title, errorMsg.txt, errorMsg.svg);
+          } else {
+            modalMsg(successMsg.title, successMsg.txt, successMsg.svg);
           }
-          form.textContent = `Request successfully sent, ID# is ${data.id}`;
-          const p = document.createElement('p');
-          p.textContent = `Спасибо, ваша заявка ${data.id} обрабатывается`;
-          el.append(p);
-          const tick = setInterval(() => {
-            p.remove();
-            clearInterval(tick)
-          }, 3000)
         },
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +137,7 @@ form.forEach(el => {
   if (el.classList.contains('footer__form')) {
     el.addEventListener('submit', e => {
       e.preventDefault();
-
+      el.reset();
       const formData = new FormData(e.target);
 
       fetchRequest(urlPost, {
@@ -144,19 +149,10 @@ form.forEach(el => {
           if (err) {
             console.warn(err, data);
             form.textContent = err;
+            modalMsg(errorMsg.title, errorMsg.txt, errorMsg.svg);
+          } else {
+            modalMsg(successMsg.title, successMsg.txt, successMsg.svg);
           }
-          const h2 = document.querySelector('.footer__title.footer__form-title');
-          const p = document.querySelector('.footer__text');
-          const emailField = document.querySelector('.footer__input-wrap');
-          h2.textContent = `Ваша заявка успешно отправлена`;
-          p.textContent = `Наши менеджеры свяжутся с вами в течении 3-х рабочих дней`;
-          emailField.remove();
-          const tick = setInterval(() => {
-            h2.textContent = `Есть вопросы по туру?`;
-            p.textContent = `Введите свой Email и мы свяжемся с вами в течении 3 рабочих дней`;
-            el.append(emailField);
-            clearInterval(tick)
-          }, 5000)
         },
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,4 @@
 export const getData = async () => await(await fetch('./js/date.json')).json();
-// const url = 'https://discreet-exuberant-canidae.glitch.me/api/goods/';
-// const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
 
 export const fetchRequest = async (url, {
   method = 'get',

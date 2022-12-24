@@ -20,7 +20,6 @@ export const scrollFlight = () => {
     document.onwheel = (e) => {
     const scroll = e.deltaY;
     uturn = uturn + 0.02 / scroll;
-    console.log(Math.abs(uturn));
     airplane.style.transition = `all ${Math.abs(uturn)}s`;
     }}
 

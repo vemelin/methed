@@ -21,7 +21,6 @@ export const scrollFlight = () => {
       let delta;
       if (scroll < 50) {
         delta = scroll * 0.15 / 1;
-        console.log(1);
         airplane.style.transitionDuration = `${delta}s`;
       } else if (scroll < 100) {
         delta = scroll * 0.1 / 100;
@@ -29,7 +28,6 @@ export const scrollFlight = () => {
       } 
       else if (scroll < 200) {
         delta = scroll * 0.1 / 300;
-        console.log(3);
         airplane.style.transitionDuration = `${delta}s`;
       }
     }

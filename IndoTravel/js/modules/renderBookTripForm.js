@@ -116,7 +116,6 @@ form.forEach(el => {
         phoneNumber: formData.get('phoneNumber'),
         tripPrice: +document.querySelector('.reservation__price').textContent.slice(0, -1),
       };
-      el.reset();
 
       fetchRequest(urlPost, {
         method: 'POST',
@@ -127,6 +126,7 @@ form.forEach(el => {
         }
       });
       // Disable form fields
+      el.reset();
       const disableFields = el.elements;
       for (let i = 0; i < disableFields.length; i++) {
         disableFields[i].disabled = true;

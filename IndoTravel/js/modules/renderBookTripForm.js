@@ -1,8 +1,6 @@
-// import { getData } from "./modelData.js";
-import { fetchRequest, getData } from './modelData.js';
+import bookTripModal from './modalTrip.js';
+import { fetchRequest, getData} from './modelData.js';
 import { modalMsg } from "./formModals.js";
-// const urlGet = 'https://discreet-exuberant-canidae.glitch.me/api/goods/';
-// const urlGet = 'https://cms-backend-biln.onrender.com/db_goods.json';
 const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
 
 const successMsg = {
@@ -98,42 +96,44 @@ export const renderData = async () => {
       });
     });
   });
+
 };
 
 // Send Data: Trip Tour Form
 const form = document.querySelectorAll('form');
 form.forEach(el => {
   if (el.classList.contains('reservation__form')) {
-    el.addEventListener('submit', e => {
+    el.addEventListener('submit', async (e) => {
       e.preventDefault();
+      let target = e.target;
 
       const formData = new FormData(e.target);
+      // const getFormData = Object.fromEntries(formData);
+      const getFormData = {
+        date: formData.get('dates'),
+        peopleNumber: formData.get('people'),
+        fullName: formData.get('fullName'),
+        phoneNumber: formData.get('phoneNumber'),
+        tripPrice: +document.querySelector('.reservation__price').textContent.slice(0, -1),
+      };
       el.reset();
 
       fetchRequest(urlPost, {
         method: 'POST',
-        body: {
-          date: formData.get('dates'),
-          peopleNumber: formData.get('people'),
-          fullName: formData.get('fullName'),
-          phoneNumber: formData.get('phoneNumber'),
-          totalPrice: +document.querySelector('.reservation__price').textContent.slice(0, -1),
-        },
-        callback: (err, data) => {
-          if (err) {
-            console.warn(err, data);
-            form.textContent = err;
-            modalMsg(errorMsg.title, errorMsg.txt, errorMsg.svg);
-          } else {
-            modalMsg(successMsg.title, successMsg.txt, successMsg.svg);
-          }
-        },
+        callback: await bookTripModal(null, getFormData),
+        body: getFormData,
         headers: {
           'Content-Type': 'application/json',
         }
       });
+      // Disable form fields
+      const disableFields = el.elements;
+      for (let i = 0; i < disableFields.length; i++) {
+        disableFields[i].disabled = true;
+      }
     });
-  }
+  };
+
   if (el.classList.contains('footer__form')) {
     el.addEventListener('submit', e => {
       e.preventDefault();
